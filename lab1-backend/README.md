@@ -496,31 +496,31 @@ if __name__ == '__main__':                               # Прояснить
 Автоматическое обновление сервера при изменении кода происходит благодаря флагу debug=True в app.run, означающий режим отладки.
 
 ### Скриншоты результатов
-![Корневой маршрут](screenshots/individual-task/js/basic/root.png)
+![Корневой маршрут](screenshots/individual-task/basic/root.png)
 *Корневой маршрут*
-___
-![Эндпоинт docs](screenshots/individual-task/js/basic/docs.png)
+
+![Эндпоинт docs](screenshots/individual-task/basic/docs.png)
 *Эндпоинт docs*
-___
-![Ошибка 404](screenshots/individual-task/js/intermed/error.png)
+
+![Ошибка 404](screenshots/individual-task/intermed/error.png)
 *Ошибка 404*
-___
-![Эндпоинт recipes](screenshots/individual-task/js/intermed/recipes.png)
+
+![Эндпоинт recipes](screenshots/individual-task/intermed/recipes.png)
 *Эндпоинт recipes*
-___
-![Эндпоинт ingredients](screenshots/individual-task/js/intermed/ingredients.png)
+
+![Эндпоинт ingredients](screenshots/individual-task/intermed/ingredients.png)
 *Эндпоинт ingredients*
-___
-![Логирование](screenshots/individual-task/js/advanced/logging.png)
+
+![Логирование](screenshots/individual-task/advanced/logging.png)
 *Логирование состояния сервера*
-___
-![Эндпоинт matches](screenshots/individual-task/js/advanced/matches.png)
+
+![Эндпоинт matches](screenshots/individual-task/advanced/matches.png)
 *Эндпоинт matches*
-___
-![Эндпоинт teams](screenshots/individual-task/js/advanced/teams.png)
+
+![Эндпоинт teams](screenshots/individual-task/advanced/teams.png)
 *Эндпоинт teams*
-___
-![Эндпоинт с параметром](screenshots/individual-task/js/advanced/parameter.png)
+
+![Эндпоинт с параметром](screenshots/individual-task/advanced/parameter.png)
 *Эндпоинт matches с параметром*'
 
 ## Ответы на вопросы
