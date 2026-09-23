@@ -1,0 +1,228 @@
+{
+  "info": {
+    "_postman_id": "6d85fc0a-e67d-486a-8285-8f290f6bbec6",
+    "name": "lab2 CRUD API",
+    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58288942",
+    "_collection_link": "https://go.postman.co/collection/58288942-6d85fc0a-e67d-486a-8285-8f290f6bbec6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Items",
+      "item": [
+        {
+          "name": "All Items",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус 200 OK\", function () {\n    pm.response.to.have.status(200);\n});\n\n// Проверка, что ответ - JSON\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.json;\n});\n\n// Проверка наличия поля count\npm.test(\"Есть поле count\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('count');\n});\n\n// Проверка, что items - массив\npm.test(\"items - это массив\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData.items).to.be.an('array');\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/items",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Item By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/items/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Item",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус 201 Created\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\npm.test(\"Ответ содержит ID\", function () {\r\n    const jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property('id');\r\n    pm.expect(jsonData.id).to.be.a('number');\r\n})"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Новый товар из Postman\",\r\n    \"price\": 500,\r\n    \"quantity\": 7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/items",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Item",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Обновлённый товар\",\r\n    \"price\": 150,\r\n    \"quantity\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/items/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/items/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Errors",
+      "item": [
+        {
+          "name": "Nonexistent Item (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус 404 Not Found\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n\r\npm.test(\"Ответ содержит error\", function () {\r\n    const jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property('error');\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/items/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Data (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"\",\r\n    \"price\": \"5\",\r\n    \"quantity\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/items",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "items"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
